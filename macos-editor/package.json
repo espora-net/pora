@@ -1,0 +1,18 @@
+{
+  "name": "macos-editor",
+  "version": "1.0.0",
+  "description": "A macOS editor based on Tiptap",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "dependencies": {
+    "@tiptap/core": "^2.0.0-beta.22",
+    "@tiptap/starter-kit": "^2.0.0-beta.22",
+    "electron": "^13.1.7"
+  },
+  "devDependencies": {
+    "electron-builder": "^22.11.7"
+  }
+}
