@@ -7,6 +7,23 @@ if (app.setName && packageJson.productName) {
   app.setName(packageJson.productName);
 }
 
+// Función para crear una nueva ventana de edición
+function createNewFileWindow() {
+  const newWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    title: `New File - ${packageJson.productName}`,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true,
+      contextIsolation: false
+    }
+  });
+
+  newWindow.loadFile('index.html');
+  return newWindow;
+}
+
 // Menú personalizado con atajos y orden estándar
 const isMac = process.platform === 'darwin';
 const appName = packageJson.productName || 'Pora';
@@ -43,7 +60,7 @@ const menuTemplate = [
         label: 'New File',
         accelerator: 'CmdOrCtrl+N',
         click: () => {
-          // Acción para nuevo archivo
+          createNewFileWindow();
         }
       },
       {
