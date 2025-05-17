@@ -5,5 +5,8 @@ The project includes a GitHub Actions workflow for building the macOS editor DMG
 1. Checks out the code.
 2. Sets up Node.js.
 3. Installs dependencies.
-4. Builds the DMG.
-5. Uploads the DMG as an artifact.
+4. Compiles TypeScript files.
+5. Builds the DMG.
+6. Uploads the DMG as an artifact.
+
+The workflow also mentions the use of SCSS for styling the application.
