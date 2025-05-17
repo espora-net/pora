@@ -116,7 +116,6 @@ function createWindow () {
     show: false,
     title: packageJson.productName, // Establece el título de la ventana principal
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
       contextIsolation: false
     }
