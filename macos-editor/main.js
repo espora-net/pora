@@ -1,5 +1,11 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const packageJson = require('./package.json');
+
+// Establece el nombre de la aplicación según package.json (solo tiene efecto en macOS)
+if (app.setName && packageJson.productName) {
+  app.setName(packageJson.productName);
+}
 
 function createSplashWindow() {
   const splashWindow = new BrowserWindow({
@@ -23,6 +29,7 @@ function createWindow () {
     width: 800,
     height: 600,
     show: false,
+    title: packageJson.productName, // Establece el título de la ventana principal
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
