@@ -18,6 +18,7 @@ case "$1" in
   local)
     npm install
     npm run build
+    npm start
     ;;
   dmg)
     npm install
