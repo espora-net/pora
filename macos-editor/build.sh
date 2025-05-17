@@ -23,7 +23,7 @@ case "$1" in
   dmg)
     npm install
     npm run build
-    npx electron-builder --mac
+    npx electron-builder --mac --out=dist
     ;;
   *)
     usage

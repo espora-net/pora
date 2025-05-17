@@ -31,6 +31,13 @@ jobs:
           cd macos-editor
           ./build.sh
 
+      - name: Verify DMG creation
+        run: |
+          if [ ! -f "macos-editor/dist/*.dmg" ]; then
+            echo "DMG file not found! Ensure 'build.sh' script is working correctly."
+            exit 1
+          fi
+
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
