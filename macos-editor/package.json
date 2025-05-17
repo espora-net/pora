@@ -1,18 +1,49 @@
 {
-  "name": "macos-editor",
-  "version": "1.0.0",
+  "name": "pora",
+  "version": "0.0.1",
   "description": "A macOS editor based on Tiptap",
   "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/espora-net/pora.git"
+  },
+  "author": "Carlos de Huerta",
   "scripts": {
     "start": "electron .",
     "build": "electron-builder"
   },
   "dependencies": {
     "@tiptap/core": "^2.0.0-beta.22",
-    "@tiptap/starter-kit": "^2.0.0-beta.22",
-    "electron": "^13.1.7"
+    "@tiptap/starter-kit": "^2.0.0-beta.22"
   },
   "devDependencies": {
-    "electron-builder": "^22.11.7"
+    "electron": "^36.2.1",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.espora.pora",
+    "productName": "Pora",
+    "directories": {
+      "output": "dist"
+    },
+    "linux": {
+      "category": "Office",
+      "target": [
+        "AppImage",
+        "snap"
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg"
+      ]
+    },
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
