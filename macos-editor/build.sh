@@ -3,11 +3,28 @@
 # Ensure the script exits if any command fails
 set -e
 
-# Install dependencies
-npm install
+usage() {
+  echo "Uso: $0 [local|dmg]"
+  echo "  local  - Instala dependencias y construye la app Electron localmente"
+  echo "  dmg    - Instala dependencias, construye la app y crea el instalador DMG"
+  exit 1
+}
 
-# Build the Electron app
-npm run build
+if [ $# -ne 1 ]; then
+  usage
+fi
 
-# Create the DMG installer
-npx electron-builder --mac
+case "$1" in
+  local)
+    npm install
+    npm run build
+    ;;
+  dmg)
+    npm install
+    npm run build
+    npx electron-builder --mac
+    ;;
+  *)
+    usage
+    ;;
+esac
