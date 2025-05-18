@@ -89,3 +89,4 @@ También puedes usar el script `build.sh`:
 Para más detalles, revisa la documentación en la carpeta `docs/`.
 
 - [Workflow de release automático](docs/github-release.md): Explica cómo se construye y publica una release con el DMG usando GitHub Actions.
+- [Condiciones de desarrollo / Development Conditions](docs/Copilot.md): Este archivo debe ser actualizado con cualquier decisión de diseño relevante, tipos de controles de interfaz de usuario, bibliotecas a utilizar y requisitos de idioma. Todos los colaboradores deben mantenerlo actualizado y seguir sus reglas para cada cambio.
