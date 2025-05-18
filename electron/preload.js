@@ -1,5 +1,4 @@
-// electron/preload.js
-const { contextBridge, ipcRenderer } = require('electron');
+import { contextBridge, ipcRenderer } from 'electron';
 
 // Expose any needed APIs to the renderer process
 contextBridge.exposeInMainWorld('electron', {
@@ -52,3 +51,5 @@ window.addEventListener('DOMContentLoaded', () => {
   // Any initialization that needs to happen after DOM is loaded
   console.log('DOM fully loaded and parsed - Pora is running with Electron ' + process.versions.electron);
 });
+
+export default contextBridge;

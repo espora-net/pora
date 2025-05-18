@@ -16,7 +16,7 @@
     "electron:preview": "npm run build && NODE_ENV=production electron electron/main.js",
     "build:dmg": "npm run electron:build -- --mac dmg"
   },
-  "main": "electron/main.js",
+  "main": "electron/main.cjs",
   "dependencies": {
     "@floating-ui/react": "^0.27.8",
     "@tiptap/extension-highlight": "^2.11.9",
