@@ -87,3 +87,5 @@ También puedes usar el script `build.sh`:
 ---
 
 Para más detalles, revisa la documentación en la carpeta `docs/`.
+
+- [Workflow de release automático](docs/github-release.md): Explica cómo se construye y publica una release con el DMG usando GitHub Actions.
