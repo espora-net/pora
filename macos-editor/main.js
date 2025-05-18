@@ -1,10 +1,14 @@
 const { app, BrowserWindow, Menu } = require('electron');
 const path = require('path');
-const packageJson = require('./package.json');
 
-// Establece el nombre de la aplicación según package.json (solo tiene efecto en macOS)
-if (app.setName && packageJson.productName) {
-  app.setName(packageJson.productName);
+// Cargar la información del package.json
+const packageJson = require('./package.json');
+const appName = packageJson.productName;
+
+// Establecer el nombre de la aplicación lo más temprano posible
+app.name = appName;
+if (app.setName) {
+  app.setName(appName);
 }
 
 // Función para crear una nueva ventana de edición
@@ -26,7 +30,6 @@ function createNewFileWindow() {
 
 // Menú personalizado con atajos y orden estándar
 const isMac = process.platform === 'darwin';
-const appName = packageJson.productName || 'Pora';
 
 const menuTemplate = [
   // App menu (solo en Mac)
@@ -125,14 +128,15 @@ function createSplashWindow() {
   return splashWindow;
 }
 
-function createWindow () {
-  const packageJson = require('./package.json');
+function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     show: false,
-    title: packageJson.productName, // Establece el título de la ventana principal
+    title: appName,
+    name: appName,
     webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
       contextIsolation: false
     }
