@@ -1,5 +1,6 @@
 import { app, BrowserWindow, Menu, dialog, shell, ipcMain } from 'electron';
 import path from 'path';
+import net from 'net';
 
 const isDev = process.env.NODE_ENV === 'development';
 const isMac = process.platform === 'darwin';
@@ -11,8 +12,22 @@ let splashWindow;
 // Set app name for macOS menu
 app.name = 'Pora';
 
+// Function to find an available port
+function findAvailablePort(startPort, callback) {
+  const server = net.createServer();
+  server.listen(startPort, () => {
+    server.once('close', () => {
+      callback(startPort);
+    });
+    server.close();
+  });
+  server.on('error', () => {
+    findAvailablePort(startPort + 1, callback);
+  });
+}
+
 // Create a splash window
-function createSplashWindow() {
+function createSplashWindow(port) {
   splashWindow = new BrowserWindow({
     width: 400,
     height: 300,
@@ -30,7 +45,7 @@ function createSplashWindow() {
   // Load a custom splash screen HTML in production
   // Or just use the main app in development (since it has the splash screen component)
   if (isDev) {
-    splashWindow.loadURL('http://localhost:5173');
+    splashWindow.loadURL(`http://localhost:${port}`);
   } else {
     splashWindow.loadFile(path.join(__dirname, '../dist/splash.html'));
   }
@@ -44,7 +59,7 @@ function createSplashWindow() {
   });
 }
 
-function createWindow() {
+function createWindow(port) {
   // Create the browser window
   mainWindow = new BrowserWindow({
     width: 1200,
@@ -67,7 +82,7 @@ function createWindow() {
   // Load the app
   if (isDev) {
     // In development, load from Vite dev server
-    mainWindow.loadURL('http://localhost:5173');
+    mainWindow.loadURL(`http://localhost:${port}`);
     // Open DevTools
     mainWindow.webContents.openDevTools();
   } else {
@@ -255,17 +270,21 @@ function createWindow() {
 // Create window when Electron is ready
 app.whenReady().then(() => {
   // Show splash screen first
-  createSplashWindow();
-  
-  // Create main window after a short delay
-  setTimeout(() => {
-    createWindow();
-  }, 500);
+  findAvailablePort(5173, (port) => {
+    createSplashWindow(port);
+    
+    // Create main window after a short delay
+    setTimeout(() => {
+      createWindow(port);
+    }, 500);
+  });
 
   // On macOS, it's common to re-create a window when dock icon is clicked
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
+      findAvailablePort(5173, (port) => {
+        createWindow(port);
+      });
     }
   });
 });
