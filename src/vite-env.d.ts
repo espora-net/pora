@@ -7,16 +7,38 @@ declare module '@tiptap/react' {
     };
     isActive(name: string, attributes?: Record<string, any>): boolean;
     isActive(attributes: Record<string, any>): boolean;
+    getAttributes(attributeName: string): any;
+    can(): {
+      toggleBold(): boolean;
+      toggleItalic(): boolean;
+      toggleUnderline(): boolean;
+      toggleCode(): boolean;
+      toggleStrike(): boolean;
+      undo(): boolean;
+      redo(): boolean;
+    };
     chain(): {
       focus(): {
         toggleBold(): { run(): void };
         toggleItalic(): { run(): void };
         toggleUnderline(): { run(): void };
+        toggleCode(): { run(): void };
+        toggleStrike(): { run(): void };
         toggleHeading(options: { level: number }): { run(): void };
         toggleBulletList(): { run(): void };
         toggleOrderedList(): { run(): void };
+        setParagraph(): { run(): void };
+        toggleBlockquote(): { run(): void };
+        toggleHighlight(): { run(): void };
+        undo(): { run(): void };
+        redo(): { run(): void };
         setTextAlign(align: string): { run(): void };
         setLink(options: { href: string }): { run(): void };
+        unsetLink(): { run(): void };
+        extendMarkRange(type: string): {
+          setLink(options: { href: string }): { run(): void };
+          unsetLink(): { run(): void };
+        };
         setImage(options: { src: string }): { run(): void };
       };
     };

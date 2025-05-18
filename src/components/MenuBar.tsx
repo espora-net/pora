@@ -4,7 +4,8 @@ import { Editor } from '@tiptap/react';
 import { 
   Bold, Italic, Strikethrough, Code, Heading1, Heading2, Heading3, 
   Pilcrow, List, ListOrdered, Quote, Undo, Redo, Link as LinkIcon, 
-  Image as ImageIcon, Highlight, AlignLeft, AlignCenter, AlignRight, AlignJustify
+  Image as ImageIcon, AlignLeft, AlignCenter, AlignRight, AlignJustify,
+  Highlighter
   // Palette icon can be used if a color picker is implemented
 } from 'lucide-react';
 
@@ -87,7 +88,7 @@ const MenuBar: React.FC<MenuBarProps> = ({ editor }) => {
       
       <MenuButton onClick={setLink} title="Set Link" isActive={editor.isActive('link')}> <LinkIcon size={18} /> </MenuButton>
       <MenuButton onClick={addImage} title="Add Image"> <ImageIcon size={18} /> </MenuButton>
-      <MenuButton onClick={() => editor.chain().focus().toggleHighlight().run()} title="Highlight" isActive={editor.isActive('highlight')}> <Highlight size={18} /> </MenuButton>
+      <MenuButton onClick={() => editor.chain().focus().toggleHighlight().run()} title="Highlight" isActive={editor.isActive('highlight')}> <Highlighter size={18} /> </MenuButton>
       
       {/* Example for color - this would ideally use a color picker
       <MenuButton onClick={() => setColor('#ff0000')} title="Set Red Color" isActive={editor.isActive('textStyle', { color: '#ff0000' })}> <Palette size={18} /> </MenuButton>
