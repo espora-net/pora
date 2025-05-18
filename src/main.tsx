@@ -2,6 +2,8 @@ import { createRoot } from "react-dom/client"
 import { useState, useEffect } from "react"
 import { SimpleEditor } from "@/components/tiptap-templates/simple/simple-editor"
 import { SplashScreen } from "@/components/splash-screen/splash-screen"
+import { AppRegistry } from 'react-native';
+import { name as appName } from './app.json';
 
 const App = () => {
   const [showSplashScreen, setShowSplashScreen] = useState(true);
@@ -29,4 +31,4 @@ const App = () => {
   );
 };
 
-createRoot(document.getElementById("app")!).render(<App />)
+AppRegistry.registerComponent(appName, () => App);

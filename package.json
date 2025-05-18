@@ -11,12 +11,11 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint \"src/**/*.ts\"",
-    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:5173 && NODE_ENV=development electron electron/main.js\"",
-    "electron:build": "npm run build && electron-builder",
-    "electron:preview": "npm run build && NODE_ENV=production electron electron/main.js",
-    "build:dmg": "npm run electron:build -- --mac dmg"
+    "macos:dev": "npx react-native run-macos",
+    "macos:build": "npx react-native run-macos --configuration Release",
+    "macos:preview": "npx react-native run-macos --configuration Release"
   },
-  "main": "electron/main.cjs",
+  "main": "src/main.tsx",
   "dependencies": {
     "@floating-ui/react": "^0.27.8",
     "@tiptap/extension-highlight": "^2.11.9",
@@ -33,7 +32,9 @@
     "@tiptap/react": "^2.11.9",
     "@tiptap/starter-kit": "^2.11.9",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-native": "^0.71.8",
+    "react-native-macos": "^0.71.8"
   },
   "devDependencies": {
     "@types/react": "^19.1.2",
@@ -42,63 +43,11 @@
     "@typescript-eslint/parser": "^7.18.0",
     "@vitejs/plugin-react": "^4.4.1",
     "concurrently": "^9.1.2",
-    "electron": "^36.2.1",
-    "electron-builder": "^26.0.12",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "sass-embedded": "^1.87.0",
     "typescript": "5.5.4",
     "vite": "^6.3.5",
     "wait-on": "^8.0.3"
-  },
-  "build": {
-    "appId": "com.pora.app",
-    "productName": "Pora",
-    "mac": {
-      "category": "public.app-category.productivity",
-      "darkModeSupport": true,
-      "icon": "build/icons/icon.icns",
-      "target": ["dmg"],
-      "hardenedRuntime": true,
-      "gatekeeperAssess": false,
-      "entitlements": "build/entitlements.mac.plist",
-      "entitlementsInherit": "build/entitlements.mac.plist",
-      "artifactName": "Pora-${version}.${ext}"
-    },
-    "dmg": {
-      "contents": [
-        {
-          "x": 130,
-          "y": 220
-        },
-        {
-          "x": 410,
-          "y": 220,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ],
-      "window": {
-        "width": 540,
-        "height": 380
-      },
-      "backgroundColor": "#f0f0f0",
-      "icon": "build/icons/icon.icns",
-      "title": "Pora ${version}"
-    },
-    "files": [
-      "dist/**/*",
-      "electron/**/*"
-    ],
-    "directories": {
-      "buildResources": "build",
-      "output": "release"
-    },
-    "protocols": [
-      {
-        "name": "Pora URL",
-        "schemes": ["pora"]
-      }
-    ]
   }
 }

@@ -14,13 +14,9 @@
    ```sh
    npm install
    ```
-3. Build the React bundle:
+3. Start the React Native macOS app:
    ```sh
-   npx esbuild ./index.jsx --bundle --outfile=./bundle.js --format=iife
-   ```
-4. Start the Electron app:
-   ```sh
-   npm start
+   npx react-native run-macos
    ```
 
 ## Build DMG for macOS
@@ -29,16 +25,10 @@
    ```sh
    npm install
    ```
-2. Build the React bundle:
+2. Build the React Native macOS app:
    ```sh
-   npx esbuild ./index.jsx --bundle --outfile=./bundle.js --format=iife
+   npx react-native run-macos --configuration Release
    ```
-3. Build the DMG:
-   ```sh
-   npm run build
-   npx electron-builder --mac
-   ```
-   The DMG file will be in the `dist/` folder.
 
 ## Automated Script
 
@@ -46,7 +36,7 @@ You can use the script:
 
 - For local development:
   ```sh
-  ./build.sh local
+  ./build.sh dev
   ```
 - To generate the DMG:
   ```sh

@@ -1,4 +1,4 @@
-name: Build macOS Editor DMG
+name: Build macOS Editor App
 
 on:
   push:
@@ -28,10 +28,10 @@ jobs:
           cd macos-editor
           npm install
 
-      - name: Build DMG
+      - name: Build React Native macOS App
         run: |
           cd macos-editor
-          ./build.sh
+          npm run build
 
       - name: Debug build artifacts
         run: ls -la macos-editor/dist/
@@ -39,8 +39,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: macos-editor-dmg
-          path: macos-editor/dist/*.dmg
+          name: macos-editor-app
+          path: macos-editor/dist/*.app
 
   release:
     runs-on: macos-latest
@@ -56,13 +56,13 @@ jobs:
         run: |
           cd macos-editor
           npm install
-      - name: Build DMG
+      - name: Build React Native macOS App
         run: |
           cd macos-editor
-          ./build.sh
-      - name: Upload DMG to GitHub Release
+          npm run build
+      - name: Upload App to GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: macos-editor/dist/*.dmg
+          files: macos-editor/dist/*.app
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
