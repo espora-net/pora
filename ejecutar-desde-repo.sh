@@ -19,6 +19,12 @@ git clean -fd
 echo "Instalando dependencias..."
 npm install
 
-# Ejecutar el proyecto
-echo "Iniciando la aplicación..."
-npm run dev
+# Verificar si el entorno tiene npx/vite disponible
+if command -v npx &> /dev/null
+then
+    echo "Iniciando la aplicación usando npx..."
+    npx vite
+else
+    echo "Iniciando la aplicación usando npm run..."
+    npm run dev
+fi
