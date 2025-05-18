@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pora</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      background-color: transparent;
+    }
+    
+    .splash-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+    
+    .app-name {
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    
+    .loading-bar {
+      width: 200px;
+      height: 4px;
+      background-color: #f0f0f0;
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .loading-progress {
+      height: 100%;
+      width: 30%;
+      background-color: #3498db;
+      border-radius: 2px;
+      position: absolute;
+      animation: progress 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes progress {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(400%); }
+    }
+  </style>
+</head>
+<body>
+  <div class="splash-container">
+    <img src="../dist/assets/baobab.png" alt="Pora Logo" class="logo">
+    <h1 class="app-name">Pora</h1>
+    <div class="loading-bar">
+      <div class="loading-progress"></div>
+    </div>
+  </div>
+</body>
+</html>
