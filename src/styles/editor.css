@@ -1,0 +1,126 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: var(--editor-bg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 10px;
+  overflow: hidden;
+}
+
+.editor-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.ProseMirror {
+  outline: none;
+  min-height: 100%;
+}
+
+.ProseMirror p {
+  margin-bottom: 1em;
+}
+
+.ProseMirror h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror h3 {
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+}
+
+.ProseMirror a {
+  color: var(--highlight-color);
+  text-decoration: underline;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+.ProseMirror blockquote {
+  border-left: 3px solid var(--border-color);
+  padding-left: 1em;
+  margin-left: 0;
+  color: #555;
+}
+
+.ProseMirror code {
+  background-color: #f1f1f1;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: monospace;
+}
+
+.ProseMirror pre {
+  background-color: #f1f1f1;
+  padding: 0.7em 1em;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin-bottom: 1em;
+}
+
+.ProseMirror pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+/* Estilos para el toolbar */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-color);
+  background-color: #f9f9f9;
+}
+
+.toolbar button {
+  background-color: transparent;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 8px;
+  margin-right: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolbar button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.toolbar button.is-active {
+  background-color: rgba(0, 112, 243, 0.1);
+  color: var(--highlight-color);
+}
+
+.toolbar .separator {
+  width: 1px;
+  height: 24px;
+  background-color: var(--border-color);
+  margin: 0 8px;
+}
+
+/* Estilos para la barra de estado */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-top: 1px solid var(--border-color);
+  color: #666;
+  background-color: #f9f9f9;
+}
