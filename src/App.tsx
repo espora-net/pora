@@ -10,7 +10,8 @@ import './styles/editor.css'; // Specific editor styles, like prose classes cust
 
 const App: React.FC = () => {
   const [editor, setEditor] = useState<TiptapEditor | null>(null);
-  const [currentFile, setCurrentFile] = useState<string | null>(null);
+  // Will be used later for handling file operations
+  const [_currentFile, _setCurrentFile] = useState<string | null>(null);
   const [fileContent, setFileContent] = useState<string>('');
 
   // Placeholder for file operations - these would interact with Electron's main process

@@ -62,11 +62,11 @@ const EditorComponent: React.FC<EditorProps> = ({ onEditorReady, initialContent 
         class: 'prose dark:prose-invert prose-sm sm:prose-base lg:prose-lg xl:prose-2xl m-5 focus:outline-none editor-content',
       },
     },
-    onUpdate: ({ editor }) => {
+    onUpdate: () => {
       // console.log(editor.getHTML());
       // You can add logic here to save content, etc.
     },
-    onCreate: ({ editor }) => {
+    onCreate: ({ editor }: { editor: TiptapEditor }) => {
       onEditorReady(editor);
     },
   });
