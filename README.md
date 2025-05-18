@@ -1,4 +1,4 @@
-# pora
+# Baobab
 My Personal editor
 
 For detailed documentation, please refer to the [docs](docs/) directory.
