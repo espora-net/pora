@@ -1,6 +1,6 @@
-// electron/main.js
-const { app, BrowserWindow, Menu, dialog, shell, ipcMain } = require('electron');
-const path = require('path');
+import { app, BrowserWindow, Menu, dialog, shell, ipcMain } from 'electron';
+import path from 'path';
+
 const isDev = process.env.NODE_ENV === 'development';
 const isMac = process.platform === 'darwin';
 
