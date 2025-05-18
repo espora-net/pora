@@ -7,7 +7,7 @@ MODE=$1
 
 if [ -z "$MODE" ] || [ "$MODE" == "dev" ]; then
   echo "Iniciando en modo de desarrollo..."
-  npm run electron:dev
+  npx react-native run-macos
 elif [ "$MODE" == "dmg" ]; then
   echo "Generando DMG para macOS..."
   
@@ -20,7 +20,7 @@ elif [ "$MODE" == "dmg" ]; then
     fi
     
     # Generar el DMG
-    npm run build:dmg
+    npx react-native run-macos --configuration Release
   else
     echo "Error: La generación de DMG solo es posible en macOS."
     echo "Actualmente estás ejecutando en: $OSTYPE"
@@ -29,7 +29,7 @@ elif [ "$MODE" == "dmg" ]; then
   fi
 elif [ "$MODE" == "preview" ]; then
   echo "Iniciando vista previa de la aplicación..."
-  npm run electron:preview
+  npx react-native run-macos --configuration Release
 else
   echo "Uso: $0 [dev|dmg|preview]"
   echo "  dev    : Inicia la aplicación en modo de desarrollo (por defecto)."

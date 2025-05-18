@@ -29,7 +29,7 @@ export default defineConfig({
       }
     }
   ],
-  base: './', // Relative paths for electron compatibility
+  base: './', // Relative paths for compatibility
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -43,7 +43,6 @@ export default defineConfig({
       },
     },
   },
-  // Electron specific settings
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

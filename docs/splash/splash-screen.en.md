@@ -1,66 +1,45 @@
 # Splash Screen Functionality
 
-The `macos-editor/main.js` file includes functionality for displaying a splash screen when the macOS editor is launched. The splash screen is displayed for 3 seconds before the main window is shown. The relevant code is as follows:
+The splash screen component is implemented using React in the `src/components/splash-screen/splash-screen.tsx` file. The splash screen is displayed for a minimum of 1.5 seconds before the main application is shown. The relevant code is as follows:
 
-```javascript
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
+```typescript
+import React, { useEffect, useState } from 'react';
+import './splash-screen.scss';
 
-function createSplashWindow() {
-  const splashWindow = new BrowserWindow({
-    width: 400,
-    height: 300,
-    frame: false,
-    alwaysOnTop: true,
-    transparent: true,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false
-    }
-  });
-
-  splashWindow.loadFile('splash.html');
-  return splashWindow;
+interface SplashScreenProps {
+  onComplete: () => void;
+  minimumDisplayTime?: number;
 }
 
-function createWindow () {
-  const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
-    show: false,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true,
-      contextIsolation: false
-    }
-  });
+export const SplashScreen: React.FC<SplashScreenProps> = ({ 
+  onComplete, 
+  minimumDisplayTime = 1500 
+}) => {
+  const [shouldHide, setShouldHide] = useState(false);
 
-  mainWindow.loadFile('index.html');
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldHide(true);
+      onComplete();
+    }, minimumDisplayTime);
 
-  mainWindow.once('ready-to-show', () => {
-    setTimeout(() => {
-      splashWindow.close();
-      mainWindow.show();
-    }, 3000); // Show splash screen for 3 seconds
-  });
-}
+    return () => clearTimeout(timer);
+  }, [minimumDisplayTime, onComplete]);
 
-let splashWindow;
-
-app.on('ready', () => {
-  splashWindow = createSplashWindow();
-  createWindow();
-});
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
-
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
-});
+  return (
+    <div className={`splash-screen ${shouldHide ? 'hidden' : ''}`}>
+      <div className="splash-content">
+        <div className="logo-container">
+          <img src="/images/baobab.png" alt="Pora Logo" className="app-logo" />
+        </div>
+        <h1 className="app-name">Pora</h1>
+        <div className="loading-indicator">
+          <div className="loading-bar">
+            <div className="loading-progress"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 ```
