@@ -124,3 +124,100 @@
   color: #666;
   background-color: #f9f9f9;
 }
+
+/* src/styles/editor.css */
+
+/* Basic styling for the Tiptap editor content area */
+.editor-content .ProseMirror {
+    min-height: 150px; /* Or any height you prefer */
+    padding: 1rem;
+    border: 1px solid #ccc; /* Optional: if you want a border directly on the editor */
+    border-radius: 4px;
+    background-color: #fff; /* Light mode background */
+    color: #000; /* Light mode text */
+}
+
+.dark .editor-content .ProseMirror {
+    background-color: #1f2937; /* Dark mode background (e.g., gray-800) */
+    color: #fff; /* Dark mode text */
+    border-color: #4b5563; /* Dark mode border (e.g., gray-600) */
+}
+
+/* Placeholder text style */
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}
+
+/* Tailwind Prose styles customization (optional) */
+/* You can override Tailwind Prose defaults here if needed */
+.prose :where(a):not(:where([class~=\"not-prose\"] *)) {
+  @apply text-blue-600 dark:text-blue-400;
+}
+
+.prose :where(strong):not(:where([class~=\"not-prose\"] *)) {
+  @apply font-bold;
+}
+
+.prose :where(code):not(:where([class~=\"not-prose\"] *)) {
+  @apply bg-gray-200 dark:bg-gray-700 px-1 py-0.5 rounded text-sm;
+}
+
+.prose :where(blockquote):not(:where([class~=\"not-prose\"] *)) {
+  @apply border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic;
+}
+
+.prose :where(h1):not(:where([class~=\"not-prose\"] *)) {
+  @apply text-3xl font-bold mb-4;
+}
+.prose :where(h2):not(:where([class~=\"not-prose\"] *)) {
+  @apply text-2xl font-semibold mb-3;
+}
+.prose :where(h3):not(:where([class~=\"not-prose\"] *)) {
+  @apply text-xl font-semibold mb-2;
+}
+
+.prose :where(img):not(:where([class~=\"not-prose\"] *)) {
+    @apply rounded-md my-4;
+}
+
+/* Ensure images are not too wide */
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+}
+
+.ProseMirror img.ProseMirror-selectednode {
+  outline: 3px solid #68CEF8;
+}
+
+/* Highlight styling */
+.ProseMirror mark {
+  background-color: yellow; /* Default highlight color */
+  /* For multicolor highlights, Tiptap adds inline styles */
+}
+
+/* Link styling */
+.ProseMirror a {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Remove default focus outline from ProseMirror itself, as we style the container */
+.ProseMirror:focus {
+    outline: none;
+}
+
+/* Style for the editor wrapper to ensure it fills height */
+.editor-wrapper {
+    /* This class is on the div wrapping EditorContent in Editor.tsx */
+    /* It should already have flex-grow and overflow-hidden from App.tsx */
+}
+
+.editor-content {
+    /* This class is on EditorContent in Editor.tsx */
+    /* It should already have flex-grow and overflow-y-auto from Editor.tsx */
+}
