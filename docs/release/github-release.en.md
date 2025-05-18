@@ -19,7 +19,7 @@ This project uses a GitHub Actions workflow to automate building and publishing 
 6. The GitHub Actions workflow will build the DMG and attach it to the release automatically.
 
 ## References
-- [build.yml](../.github/workflows/build.yml)
+- [build.yml](../../.github/workflows/build.yml)
 - [softprops/action-gh-release](https://github.com/softprops/action-gh-release)
 
 ---
