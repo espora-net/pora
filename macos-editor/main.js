@@ -18,7 +18,6 @@ function createNewFileWindow() {
     height: 600,
     title: `New File - ${packageJson.productName}`,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
       contextIsolation: false
     }
@@ -111,24 +110,7 @@ const menuTemplate = [
 const appMenu = Menu.buildFromTemplate(menuTemplate);
 Menu.setApplicationMenu(appMenu);
 
-function createSplashWindow() {
-  const splashWindow = new BrowserWindow({
-    width: 400,
-    height: 300,
-    frame: false,
-    alwaysOnTop: true,
-    transparent: true,
-    webPreferences: {
-      nodeIntegration: true,
-      contextIsolation: false
-    }
-  });
-
-  splashWindow.loadFile('splash.html');
-  return splashWindow;
-}
-
-function createWindow() {
+async function createWindow() {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -136,26 +118,19 @@ function createWindow() {
     title: appName,
     name: appName,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: true,
       contextIsolation: false
     }
   });
 
-  mainWindow.loadFile('index.html');
+  await mainWindow.loadFile('index.html');
 
   mainWindow.once('ready-to-show', () => {
-    setTimeout(() => {
-      splashWindow.close();
-      mainWindow.show();
-    }, 3000); // Show splash screen for 3 seconds
+    mainWindow.show();
   });
 }
 
-let splashWindow;
-
 app.on('ready', () => {
-  splashWindow = createSplashWindow();
   createWindow();
 });
 
