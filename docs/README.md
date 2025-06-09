@@ -9,6 +9,7 @@ Welcome to the documentation for the macOS editor. Below is a summary of the ava
 - [Build Script](build-script.md)
 - [Package.json File](package-json.md)
 - [Splash Screen Functionality](splash-screen.md)
+- [LLM Integration](llm/llm-integration.en.md)
 
 ## Documentation Structure
 
@@ -21,4 +22,5 @@ graph TD;
     A --> F[Build Script];
     A --> G[Package.json File];
     A --> H[Splash Screen Functionality];
+    A --> I[LLM Integration];
 ```

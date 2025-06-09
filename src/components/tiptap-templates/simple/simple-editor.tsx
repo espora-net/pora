@@ -52,6 +52,8 @@ import {
 import { MarkButton } from "@/components/tiptap-ui/mark-button"
 import { TextAlignButton } from "@/components/tiptap-ui/text-align-button"
 import { UndoRedoButton } from "@/components/tiptap-ui/undo-redo-button"
+import { LLMButton } from "@/components/tiptap-ui/llm-button"
+import type { LLMProvider } from "@/lib/llm-service"
 
 // --- Icons ---
 import { ArrowLeftIcon } from "@/components/tiptap-icons/arrow-left-icon"
@@ -137,6 +139,7 @@ const MainToolbarContent = ({
 
       <ToolbarGroup>
         <ImageUploadButton text="Add" />
+        <LLMButton options={llmOptions} />
       </ToolbarGroup>
 
       <Spacer />
@@ -182,6 +185,16 @@ export function SimpleEditor() {
     "main" | "highlighter" | "link"
   >("main")
   const toolbarRef = React.useRef<HTMLDivElement>(null)
+
+  const llmOptions = React.useMemo(
+    () => ({
+      provider: (import.meta.env.VITE_LLM_PROVIDER as LLMProvider) || "openai",
+      apiKey: import.meta.env.VITE_LLM_API_KEY,
+      endpoint: import.meta.env.VITE_LLM_ENDPOINT,
+      model: import.meta.env.VITE_LLM_MODEL,
+    }),
+    []
+  )
 
   const editor = useEditor({
     immediatelyRender: false,
