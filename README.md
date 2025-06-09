@@ -13,6 +13,8 @@ Installation instructions ([English](docs/installation/installation.en.md), [Esp
 
 GitHub Actions Release Workflow ([English](docs/release/github-release.en.md), [Español](docs/release/github-release.es.md))
 
+LLM Integration ([English](docs/llm/llm-integration.en.md), [Español](docs/llm/llm-integration.es.md))
+
 Development Conditions ([English](docs/meta/Copilot.md))
 
 For more details, check the documentation in the [docs](docs/) folder.
